@@ -10,20 +10,18 @@
   <%= @user.name %>
 </p>
 
-<h2>
-  Predictions
-</h2>
+<h2>Predictions</h2>
 
 <% @group_predictions.keys.each do |group_name| %>
 <h3>Group <%= group_name %></h3>
-<table class="table">
+<table class="table predictions">
   <% @group_predictions[group_name].each do |prediction|
-  options =  [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8]] %>
+  options =  (0..9).to_a.map { |n| [n.to_s, n]} %>
   <tr>
     <td><%= prediction.match.home_team.name %></td>
-    <td><%= select(:prediction, :home_score, options) %></td>
+    <td><%= select_tag(:home_score, options_for_select(options, prediction.home_score), class: 'score') %></td>
     <td> - </td>
-    <td><%= select(:prediction, :away_score, options) %></td>
+    <td><%= select_tag(:away_score, options_for_select(options, prediction.away_score), class: 'score') %></td>
     <td><%= prediction.match.away_team.name %></td>
   </tr>
   <% end %>
