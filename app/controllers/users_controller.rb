@@ -11,6 +11,13 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])    
+    @group_predictions = {}
+    @user.predictions.each do |prediction|
+      if @group_predictions[prediction.match.team.group.name].nil?
+        @group_predictions[prediction.match.team.group.name] = []
+      end
+      @group_predictions[prediction.match.team.group.name] << prediction
+    end    
   end
 
   # GET /users/new
