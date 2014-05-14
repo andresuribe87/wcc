@@ -28,7 +28,7 @@ Team.create([
 { id: 8, name: 'Australia' , country: 'AUS', group_id: 2 },
 { id: 9, name: 'Colombia' , country: 'COL', group_id: 3 },
 { id: 10, name: 'Greece' , country: 'GRC', group_id: 3 },
-{ id: 11, name: 'Côte d'Ivoire' , country: 'CIV', group_id: 3 },
+{ id: 11, name: 'Cote d\'Ivoire' , country: 'CIV', group_id: 3 },
 { id: 12, name: 'Japan' , country: 'JPN', group_id: 3 },
 { id: 13, name: 'Uruguay' , country: 'URY', group_id: 4 },
 { id: 14, name: 'Costa Rica' , country: 'CRI', group_id: 4 },
@@ -60,11 +60,57 @@ User.create([
 
 #Insert predictions
 Prediction.create([
-  { match_id: 1, user_id: 1, home_score: 0, away_score: 0},
-  { match_id: 2, user_id: 1, home_score: 0, away_score: 0}
+  { match_id: 1, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 2, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 3, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 4, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 5, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 6, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 7, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 8, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 9, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 10, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 11, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 12, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 13, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 14, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 15, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 16, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 17, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 18, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 19, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 20, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 21, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 22, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 23, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 24, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 25, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 26, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 27, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 28, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 29, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 30, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 31, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 32, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 33, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 34, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 35, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 36, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 37, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 38, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 39, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 40, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 41, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 42, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 43, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 44, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 45, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 46, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 47, user_id: 1, home_score: 0, away_score: 0 },
+  { match_id: 48, user_id: 1, home_score: 0, away_score: 0 }
   ])
 
-#Insert City.create([
+City.create([
 { id: 1, name: 'Belo Horizonte' },
 { id: 2, name: 'Brasilia' },
 { id: 3, name: 'Cuiaba' },
@@ -81,7 +127,7 @@ Prediction.create([
 
 
 
-#Insert Stadium.create([
+Stadium.create([
 { id: 1, name: 'Estadio Mineirao' , city_id:1 },
 { id: 2, name: 'Estadio Nacional' , city_id:2 },
 { id: 3, name: 'Arena Pantanal' , city_id:3 },
@@ -91,7 +137,7 @@ Prediction.create([
 { id: 7, name: 'Estadio das Dunas' , city_id:7 },
 { id: 8, name: 'Estadio Beira-Rio' , city_id:8 },
 { id: 9, name: 'Arena Pernambuco' , city_id:9 },
-{ id: 10, name: 'Maracanã - Estádio Jornalista Mário Filho' , city_id:10 },
+{ id: 10, name: 'Maracana - Estadio Jornalista Mario Filho' , city_id:10 },
 { id: 11, name: 'Arena Fonte Nova' , city_id:11 },
 { id: 12, name: 'Arena de Sao Paulo' , city_id:12 }
 ])
