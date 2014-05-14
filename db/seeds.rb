@@ -30,13 +30,14 @@ Team.create([
 
 #Insert User
 User.create([
-  { id: 1, name: 'Andres Uribe', email: 'test@test.com', password: 'helloworld'}
+  { id: 1, name: 'Andres Uribe', email: 'test@test.com', password: 'helloworld',
+    password_confirmation: 'helloworld'}
   ])
 
 #Insert predictions
 Prediction.create([
-  { match_id: 1, user_id: 1},
-  { match_id: 2, user_id: 1}
+  { match_id: 1, user_id: 1, home_score: 0, away_score: 0},
+  { match_id: 2, user_id: 1, home_score: 0, away_score: 0 }
   ])
 #Insert City.create...
 
@@ -44,6 +45,6 @@ Prediction.create([
 
 #Insert Matches.create...
 Match.create([
-  { id: 1, home_team_id: 1, away_team_id: 2 },
-  { id: 2, home_team_id: 3, away_team_id: 4 }
+  { id: 1, home_team_id: 1, away_team_id: 2, home_score: 0, away_score: 0 },
+  { id: 2, home_team_id: 3, away_team_id: 4, home_score: 0, away_score: 0 }
   ])

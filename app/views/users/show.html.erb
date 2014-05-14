@@ -17,13 +17,14 @@
 <% @group_predictions.keys.each do |group_name| %>
 <h3>Group <%= group_name %></h3>
 <table class="table">
-  <% @group_predictions[group_name].each do |prediction| %>
+  <% @group_predictions[group_name].each do |prediction|
+  options =  [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8]] %>
   <tr>
     <td><%= prediction.match.home_team.name %></td>
-    <td><%= select(:prediction, :home_score, [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8]]) %></td>
+    <td><%= select(:prediction, :home_score, options) %></td>
     <td> - </td>
+    <td><%= select(:prediction, :away_score, options) %></td>
     <td><%= prediction.match.away_team.name %></td>
-    <td><%= prediction.away_score %></td>
   </tr>
   <% end %>
 </table>

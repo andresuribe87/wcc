@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])    
     @group_predictions = {}
     @user.predictions.each do |prediction|
-      if @group_predictions[prediction.match.team.group.name].nil?
-        @group_predictions[prediction.match.team.group.name] = []
+      if @group_predictions[prediction.match.home_team.group.name].nil?
+        @group_predictions[prediction.match.home_team.group.name] = []
       end
-      @group_predictions[prediction.match.team.group.name] << prediction
+      @group_predictions[prediction.match.home_team.group.name] << prediction
     end    
   end
 
