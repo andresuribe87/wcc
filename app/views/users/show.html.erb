@@ -16,7 +16,7 @@
     <div class="span6">
       <h2>Results</h2>
 
-      <% @group_matches.keys.each do |group_name| %>
+      <% @group_matches.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
         <% @group_matches[group_name].each do |match| %>
         <div class="row-fluid vfill border">          
@@ -34,7 +34,7 @@
     <div class="span6 predictions">
       <h2>Predictions</h2>
 
-      <% @group_predictions.keys.each do |group_name| %>
+      <% @group_predictions.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
         <% @group_predictions[group_name].each do |prediction| %>
           <%= form_for(prediction, remote: true, html: { class: "compact"}) do |f| %>
