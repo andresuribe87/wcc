@@ -55,7 +55,9 @@ Team.create([
 #Insert User
 User.create([
   { id: 1, name: 'Andres Uribe', email: 'test@test.com', password: 'helloworld',
-    password_confirmation: 'helloworld'}
+    password_confirmation: 'helloworld', is_admin: true},
+  { id: 2, name: 'Buzz Lightyear', email: 'b@l.com', password: 'buzzed',
+    password_confirmation: 'buzzed', is_admin: false}
   ])
 
 #Insert predictions

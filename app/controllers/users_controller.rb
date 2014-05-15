@@ -10,11 +10,29 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if not signed_in?
-      redirect_to signin_path
+    if !signed_in? or current_user.nil?
+      redirect_to signin_path and return
     end
+    
     @user = User.find(params[:id])    
+    if @user.nil?
+      redirect_to signin_path and return
+    end
+    if current_user.id != @user.id
+      redirect_to current_user and return
+    end
+
     @group_predictions = {}
+
+    #Create predictions if this user doesn't have them yet
+    matches = Match.all
+    if !@user.predictions.any?
+      Prediction.create(
+        matches.map { |m| 
+          { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id }
+        }
+      )
+    end
     @user.predictions.each do |prediction|
       if @group_predictions[prediction.match.home_team.group.name].nil?
         @group_predictions[prediction.match.home_team.group.name] = []
@@ -23,7 +41,7 @@ class UsersController < ApplicationController
     end 
 
     @group_matches = {}
-    Match.find(:all).each do |match|
+    matches.each do |match|
       if @group_matches[match.home_team.group.name].nil?
          @group_matches[match.home_team.group.name] = []
       end

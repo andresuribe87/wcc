@@ -6,4 +6,8 @@ class Match < ActiveRecord::Base
 
   validates :home_score, :numericality => { :greater_than_or_equal_to => 0 }
   validates :away_score, :numericality => { :greater_than_or_equal_to => 0 }
+
+  def update_user_scores
+    #todo
+  end
 end

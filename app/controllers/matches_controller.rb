@@ -1,5 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin_user, only: [:show, :edit, :update, :destroy]
 
   # GET /matches
   # GET /matches.json
@@ -42,6 +44,7 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
+        match.update_user_scores
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,5 +73,13 @@ class MatchesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
       params.require(:match).permit(:home_team_id, :away_team_id, :home_score, :away_score, :datetime, :stadium_id)
+    end
+
+    def signed_in_user 
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+    def is_admin_user
+      redirect_to current_user, flash: { warning: "You need to be an admin to edit match results." } unless current_user.is_admin?
     end
 end
