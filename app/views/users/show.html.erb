@@ -1,3 +1,4 @@
+<% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -24,8 +25,8 @@
           <div class="span1"><%= match.home_score %></div>
           <div class="span2 text-center"> - </div>
           <div class="span1"><%= match.away_score %></div>
-          <div class="span3"><%= match.away_team.name %></div>
           <div class="span1"><%= image_tag(match.away_team.country + '.bmp') %></div>
+          <div class="span3"><%= match.away_team.name %></div>
         </div>
         <% end %>
       <% end %>    
@@ -43,8 +44,8 @@
             <div class="span2"><%= f.number_field :home_score, min: 0, class: "span12 score" %></div>
             
             <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score" %></div>
-            <div class="span3"><%= prediction.match.away_team.name %></div>
             <div class="span1"><%= image_tag(prediction.match.away_team.country + '.bmp') %></div>
+            <div class="span3"><%= prediction.match.away_team.name %></div>
           </div>
           <% end %>
         <% end %>
