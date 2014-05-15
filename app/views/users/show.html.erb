@@ -20,12 +20,12 @@
       <h3>Group <%= group_name %></h3>
         <% @group_matches[group_name].each do |match| %>
         <div class="row-fluid vfill border">          
-          <div class="span1"><%= image_tag(match.home_team.country + '.bmp') %></div>
+          <div class="span1"><%= image_tag(match.home_team.country + '.png') %></div>
           <div class="span3"><%= match.home_team.name %></div>
           <div class="span1"><%= match.home_score %></div>
           <div class="span2 text-center"> - </div>
           <div class="span1"><%= match.away_score %></div>
-          <div class="span1"><%= image_tag(match.away_team.country + '.bmp') %></div>
+          <div class="span1"><%= image_tag(match.away_team.country + '.png') %></div>
           <div class="span3"><%= match.away_team.name %></div>
         </div>
         <% end %>
@@ -39,12 +39,12 @@
         <% @group_predictions[group_name].each do |prediction| %>
           <%= form_for(prediction, remote: true, html: { class: "compact"}) do |f| %>
           <div class="row-fluid border">
-            <div class="span1"><%= image_tag(prediction.match.home_team.country + '.bmp') %></div>
+            <div class="span1"><%= image_tag(prediction.match.home_team.country + '.png') %></div>
             <div class="span3"><%= prediction.match.home_team.name %></div>
             <div class="span2"><%= f.number_field :home_score, min: 0, class: "span12 score" %></div>
             
             <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score" %></div>
-            <div class="span1"><%= image_tag(prediction.match.away_team.country + '.bmp') %></div>
+            <div class="span1"><%= image_tag(prediction.match.away_team.country + '.png') %></div>
             <div class="span3"><%= prediction.match.away_team.name %></div>
           </div>
           <% end %>
