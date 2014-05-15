@@ -17,7 +17,15 @@ class UsersController < ApplicationController
         @group_predictions[prediction.match.home_team.group.name] = []
       end
       @group_predictions[prediction.match.home_team.group.name] << prediction
-    end    
+    end 
+
+    @group_matches = {}
+    Match.find(:all).each do |match|
+      if @group_matches[match.home_team.group.name].nil?
+         @group_matches[match.home_team.group.name] = []
+      end
+      @group_matches[match.home_team.group.name] << match
+    end
   end
 
   # GET /users/new

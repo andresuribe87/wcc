@@ -10,23 +10,50 @@
   <%= @user.name %>
 </p>
 
-<h2>Predictions</h2>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <h2>Results</h2>
 
-<% @group_predictions.keys.each do |group_name| %>
-<h3>Group <%= group_name %></h3>
-<table class="table predictions">
-  <% @group_predictions[group_name].each do |prediction|
-  options =  (0..9).to_a.map { |n| [n.to_s, n]} %>
-  <tr>
-    <td><%= prediction.match.home_team.name %></td>
-    <td><%= select_tag(:home_score, options_for_select(options, prediction.home_score), class: 'score') %></td>
-    <td> - </td>
-    <td><%= select_tag(:away_score, options_for_select(options, prediction.away_score), class: 'score') %></td>
-    <td><%= prediction.match.away_team.name %></td>
-  </tr>
-  <% end %>
-</table>
-<% end %>
+      <% @group_matches.keys.each do |group_name| %>
+      <h3>Group <%= group_name %></h3>
+        <% @group_matches[group_name].each do |match|
+        options =  (0..9).to_a.map { |n| [n.to_s, n]} %>
+        <div class="row-fluid vfill border">
+          <div class="span1"><%= match.home_team.country %></div>
+          <div class="span3"><%= match.home_team.name %></div>
+          <div class="span1"><%= match.home_score %></div>
+          <div class="span2 text-center"> - </div>
+          <div class="span1"><%= match.away_score %></div>
+          <div class="span3"><%= match.away_team.name %></div>
+          <div class="span1"><%= match.away_team.country %></div>
+        </div>
+        <% end %>
+      <% end %>    
+    </div>
+    <div class="span6">
+      <h2>Predictions</h2>
+
+      <% @group_predictions.keys.each do |group_name| %>
+      <h3>Group <%= group_name %></h3>
+        <% @group_predictions[group_name].each do |prediction|
+        options =  (0..9).to_a.map { |n| [n.to_s, n]} %>
+        <div class="row-fluid border">
+          <div class="span1"><%= prediction.match.home_team.country %></div>
+          <div class="span2"><%= prediction.match.home_team.name %></div>
+          <div class="span2"><%= number_field_tag(:home_score, prediction.home_score, min: 0, step:1, class: "span12 score") %></div>
+          <div class="span2 text-center"> - </div>
+          <div class="span2"><%= number_field_tag(:away_score, prediction.away_score, min: 0, step:1, class: "span12 score") %></div>
+          <div class="span2"><%= prediction.match.away_team.name %></div>
+          <div class="span1"><%= prediction.match.away_team.country %></div>
+        </div>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
