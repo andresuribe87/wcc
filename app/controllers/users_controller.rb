@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if not signed_in?
+      redirect_to signin_path
+    end
     @user = User.find(params[:id])    
     @group_predictions = {}
     @user.predictions.each do |prediction|
@@ -44,6 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        sign_in @user
         format.html { redirect_to @user, flash: { success: 'User was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @user }
       else
