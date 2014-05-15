@@ -11,4 +11,8 @@ class Match < ActiveRecord::Base
     Outcome.outcome(@home_score, @away_score)
   end
 
+  def to_s
+    "#{self.home_team.country} vs. #{self.away_team.country}"
+  end
+
 end
