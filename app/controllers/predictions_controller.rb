@@ -1,6 +1,8 @@
 class PredictionsController < ApplicationController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy]
+  before_action :after_cutoff_time, only: [:update, :edit, :destroy]
 
+  CUTOFF_MINUTES = 30
   # GET /predictions
   # GET /predictions.json
   def index
@@ -70,5 +72,11 @@ class PredictionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
       params.require(:prediction).permit(:match_id, :home_score, :away_score, :user_id)
+    end
+
+    def after_cutoff_time
+      if @prediction.match.datetime - CUTOFF_MINUTES.minutes < Date.now
+        @changes_allowed = false
+      end
     end
 end

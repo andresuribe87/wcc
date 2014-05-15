@@ -1,2 +1,2 @@
-module PredictionsHelper
+module PredictionsHelper  
 end

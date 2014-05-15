@@ -1,12 +1,13 @@
 <h1>Listing predictions</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Match</th>
-      <th>Home score</th>
-      <th>Away score</th>
+      <th>Home Guess</th>
+      <th>Away Guess</th>
       <th>User</th>
+      <th>Score</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,10 +17,11 @@
   <tbody>
     <% @predictions.each do |prediction| %>
       <tr>
-        <td><%= prediction.match_id %></td>
+        <td><%= prediction.match %></td>
         <td><%= prediction.home_score %></td>
         <td><%= prediction.away_score %></td>
         <td><%= prediction.user_id %></td>
+        <td><%= prediction.score %></td>
         <td><%= link_to 'Show', prediction %></td>
         <td><%= link_to 'Edit', edit_prediction_path(prediction) %></td>
         <td><%= link_to 'Destroy', prediction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

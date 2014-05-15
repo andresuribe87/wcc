@@ -1,4 +1,5 @@
-class MatchesController < ApplicationController
+class MatchesController < ApplicationController  
+
   before_action :set_match, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:show, :edit, :update, :destroy]
   before_action :is_admin_user, only: [:show, :edit, :update, :destroy]
@@ -44,8 +45,11 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        match.update_user_scores
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+        @match.predictions.each do |prediction|
+          prediction.score = prediction.get_score_for(@match)
+          prediction.save
+        end
+        format.html { redirect_to @match, flash: { success: 'Match was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

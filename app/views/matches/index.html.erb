@@ -1,6 +1,6 @@
 <h1>Listing matches</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Home team</th>
@@ -18,12 +18,12 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.home_team_id %></td>
-        <td><%= match.away_team_id %></td>
+        <td><%= match.home_team.country %></td>
+        <td><%= match.away_team.country %></td>
         <td><%= match.home_score %></td>
         <td><%= match.away_score %></td>
         <td><%= match.datetime %></td>
-        <td><%= match.stadium_id %></td>
+        <td><%= match.stadium.name %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
