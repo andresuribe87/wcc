@@ -1,5 +1,5 @@
 <h1>Listing predictions</h1>
-
+ <%= will_paginate %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -20,7 +20,7 @@
         <td><%= prediction.match.to_s %></td>
         <td><%= prediction.home_score %></td>
         <td><%= prediction.away_score %></td>
-        <td><%= prediction.user_id %></td>
+        <td><%= prediction.user.email %></td>
         <td><%= prediction.score %></td>
         <td><%= link_to 'Show', prediction %></td>
         <td><%= link_to 'Edit', edit_prediction_path(prediction) %></td>
@@ -29,7 +29,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate %>
 <br>
 
 <%= link_to 'New Prediction', new_prediction_path %>

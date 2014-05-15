@@ -6,7 +6,7 @@ class PredictionsController < ApplicationController
   # GET /predictions
   # GET /predictions.json
   def index
-    @predictions = Prediction.all
+    @predictions = Prediction.paginate(page: params[:page])
   end
 
   # GET /predictions/1
