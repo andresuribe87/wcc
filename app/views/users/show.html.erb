@@ -37,7 +37,7 @@
       <% @group_predictions.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
         <% @group_predictions[group_name].sort_by { |p| p.match.datetime }.each do |prediction| %>
-          <%= form_for(prediction, remote: true, html: { class: "compact"}) do |f| %>
+          <%= form_for(prediction, remote: true, format: :json, html: { class: "compact edit_prediction"}) do |f| %>
           <div class="row-fluid border">
             <div class="span3"><%= prediction.match.home_team.name %></div>
             <div class="span1"><%= image_tag(prediction.match.home_team.country + '.png') %></div>
@@ -52,5 +52,17 @@
       <% end %>
 
     </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Error</h3>
+  </div>
+  <div class="modal-body">    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
 </div>

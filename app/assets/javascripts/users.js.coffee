@@ -11,7 +11,10 @@ $(document).ready ->
   $(".edit_prediction").on("ajax:success", (e, data, status, xhr) ->
     #remove saving icon
   ).on "ajax:error", (e, xhr, status, error) ->
-    #remove saving icon and show error
-  $(".score").on "click", (e) ->   
+    html = for field, error of xhr.responseJSON
+      "<p>#{error}</p>"  
+    $('.modal-body').html html.join ''
+    $('#myModal').modal()
+  $(".score").on "change", (e) ->   
     #show saving icon
     $(this).parent().parent().parent().submit()
