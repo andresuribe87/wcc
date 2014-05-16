@@ -5,6 +5,7 @@ Wcc::Application.routes.draw do
   get "static_pages/help"
 
   resources :predictions
+  resources :rankings
   resources :matches
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

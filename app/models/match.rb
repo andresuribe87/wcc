@@ -8,7 +8,7 @@ class Match < ActiveRecord::Base
   validates :away_score, :numericality => { :greater_than_or_equal_to => 0 }
 
   def outcome
-    Outcome.outcome(@home_score, @away_score)
+    Outcome.outcome(self.home_score, self.away_score)
   end
 
   def to_s

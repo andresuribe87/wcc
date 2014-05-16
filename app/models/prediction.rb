@@ -15,7 +15,7 @@ class Prediction < ActiveRecord::Base
   def get_score_for(match)
     #winner points
     score = 0
-    if :outcome == match.outcome
+    if self.outcome == match.outcome
       score += POINTS_FOR_WIN
     end
     #exact goals points
@@ -32,8 +32,7 @@ class Prediction < ActiveRecord::Base
     self.match.datetime - CUTOFF_MINUTES.minutes
   end
 
-  private
-    def outcome
-      Outcome.outcome(@home_score, @away_score)
-    end
+  def outcome
+    Outcome.outcome(self.home_score, self.away_score)
+  end
 end
