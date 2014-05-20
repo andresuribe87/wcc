@@ -1,2 +1,116 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<h1>Rules</h1>
+<p>To participate in the betting pool, each player will have to pay a fee in advance. The fee is of <%= number_to_currency Constants::USD_FEE %> and
+will have to be paid prior to registering on the website. Payment can be done through Paypal, Venmo, or Cash. Each fee 
+entitles each player to 1 set of predictions for the world cup (1 prediction per match). However, a 
+person might pay as many fees as he wants, and have additional sets of predictions.
+
+If you have any questions, you can address them to andresuribe87@gmail.com. For inscriptions and 
+payments, you can call Andres Uribe at +1.646.370.9271.</p>
+
+<h2>Rules and point system</h2>
+
+<ol>
+<li>
+Each player will be able to set his predictions up until 30 minutes prior to each match.
+</li>
+<li>
+For correctly predicting the outcome of the match (win, tie, loss), players will receive <%= Prediction::POINTS_FOR_WIN %> points. 
+</li>
+<li>
+When you correctly guess the outcome, <%= Prediction::POINTS_FOR_GOALS %> bonus points will given for guessing the correct amount of goals a team scored. You get bonus points for each team's score prediction.
+</li>
+<li>For example, if the player predicts a score of the U.S.A. vs Germany match of 2 – 0, and the actual result is 1 – 0, the player will receive <%= Prediction::POINTS_FOR_WIN %> for the outcome (correctly guessing Germany won) and <%= Prediction::POINTS_FOR_GOALS %> for guessing the amount of goals U.S.A. scored. A prediction of 2 - 0 would have been awarded <%= Prediction::POINTS_FOR_WIN + 2 * Prediction::POINTS_FOR_GOALS %>.
+</li>
+<li>
+In the round of 16, the points per outcome increase to <%= Prediction::POINTS_FOR_WIN * 3%> and bonus points increase to <%= Prediction::POINTS_FOR_GOALS * 3 %>
+</li>
+<li>
+In the round of 8, the points per outcome increase to <%= Prediction::POINTS_FOR_WIN * 4 %> and bonus points increase to <%= Prediction::POINTS_FOR_GOALS * 4 %>
+</li>
+<li>
+In the semifinals and the match for 3rd and 4th position, the points per outcome increase to <%= Prediction::POINTS_FOR_WIN * 4 %> and bonus points increase to <%= Prediction::POINTS_FOR_GOALS * 4 %>
+<li>
+In the final, the points per outcome increase to <%= Prediction::POINTS_FOR_WIN * 5 %> and bonus points increase to <%= Prediction::POINTS_FOR_GOALS * 5 %>
+</li>
+</ol>
+<p>
+In summary
+</p>
+<div class="row">
+  <div class="offset3 span6">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+      <th>Round</th>
+      <th>Outcome</th>
+      <th>Bonus</th>
+      </tr>
+      </thead>
+    <tbody>
+    <tr>
+    <td>Round of 32</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 1 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 1 %></td>
+    </tr>
+    <tr>
+    <td>Round of 16</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 2 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 2 %></td>
+    </tr>
+    <tr>
+    <td>Round of 8</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 3 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 3 %></td>
+    </tr>
+    <tr>
+    <td>Semifinals</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 4 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 4 %></td>
+    </tr>
+    <tr>
+    <td>3rd and 4th</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 4 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 4 %></td>
+    </tr>
+    <tr>
+    <td>Final</td>
+    <td><%= Prediction::POINTS_FOR_WIN * 5 %></td>
+    <td><%= Prediction::POINTS_FOR_GOALS * 5 %></td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+
+<p>
+In case the match goes to penalties, the score considered for point awards will be the one at the end of 
+playing time.
+</p>
+<p>
+In case a plural number of players have the same score at the end of the world cup, such prize will be 
+divided equally among such players.
+</p>
+
+<p>Prizes will be distributed as follows:</p>
+
+<div class="row">
+  <div class="offset4 span4">
+    <ol>
+    <li>
+    50% to first place
+    </li>
+    <li>
+    30% to second place
+    </li>
+    <li>
+    10% to third place 
+    </li>
+    <li>
+    5% to fourth place
+    </li>
+    <li>
+    5% to cover hosting, server and developer costs
+    </li>
+    </ol>
+  </div>
+</div>
