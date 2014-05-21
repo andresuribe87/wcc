@@ -1,6 +1,4 @@
 <div class="center hero-unit">
   <h1>Brazil 2014 World Cup Challenge</h1>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
-<%= render 'shared/signin' %>
+<%= render 'shared/signin' unless signed_in? %>

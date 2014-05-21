@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:create, :destroy]  
 
   # GET /users
   # GET /users.json
@@ -18,9 +19,8 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to signin_path and return
     end
-    if current_user.id != @user.id
-      redirect_to current_user and return
-    end
+
+    @viewing_other = current_user.id != @user.id
 
     @group_predictions = {}
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if !@user.predictions.any?      
       Prediction.create(
         matches.map { |m| 
-          { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id }
+          { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id, updated_at: DateTime.now }
         }
       )
     end
@@ -103,6 +103,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.is_admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

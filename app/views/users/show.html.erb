@@ -45,9 +45,9 @@
           <div class="row-fluid border">
             <div class="span3"><%= prediction.match.home_team.name %></div>
             <div class="span1"><%= image_tag(prediction.match.home_team.country + '.png') %></div>
-            <div class="span2"><%= f.number_field :home_score, min: 0, class: "span12 score text-center" %></div>
+            <div class="span2"><%= f.number_field :home_score, min: 0, class: "disabled span12 score text-center", disabled: @viewing_other %></div>
             
-            <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score text-center" %></div>
+            <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score text-center", disabled: @viewing_other %></div>
             <div class="span1"><%= image_tag(prediction.match.away_team.country + '.png') %></div>
             <div class="span3 text-right"><%= prediction.match.away_team.name %></div>
           </div>

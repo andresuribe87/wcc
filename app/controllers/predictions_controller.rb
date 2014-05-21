@@ -1,5 +1,7 @@
 class PredictionsController < ApplicationController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
 
   # GET /predictions
   # GET /predictions.json
@@ -70,5 +72,18 @@ class PredictionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
       params.require(:prediction).permit(:match_id, :home_score, :away_score, :user_id)
+    end
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+    def correct_user
+      respond_to do |format|
+        if !current_user?(@prediction.user)
+          format.html { redirect_to root_url, notice: 'You cannot modify this prediction' }
+          format.json { render json: { error: 'You cannot modify this prediction' }, status: :not_authorized }
+        end
+      end
     end
 end

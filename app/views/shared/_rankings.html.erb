@@ -11,7 +11,7 @@
       <tbody>
         <% @rankings.each do |ranking| %>
           <tr>
-            <td><%= ranking.user.email %></td>
+            <td><%= link_to ranking.user.email, ranking.user %></td>
             <td><%= ranking.score %></td>
           </tr>
         <% end %>
