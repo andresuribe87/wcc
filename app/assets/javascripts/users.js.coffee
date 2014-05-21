@@ -18,3 +18,4 @@ $(document).ready ->
   $(".score").on "change", (e) ->   
     #show saving icon
     $(this).parent().parent().parent().submit()
+  $(".tooltip-container").tooltip()

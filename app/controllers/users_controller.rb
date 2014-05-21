@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     #Create predictions if this user doesn't have them yet
     matches = Match.all
-    if !@user.predictions.any?
+    if !@user.predictions.any?      
       Prediction.create(
         matches.map { |m| 
           { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id }

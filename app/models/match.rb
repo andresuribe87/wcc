@@ -4,8 +4,8 @@ class Match < ActiveRecord::Base
   belongs_to :away_team, class_name: "Team"
   belongs_to :stadium
 
-  validates :home_score, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :away_score, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :home_score, :numericality => { :greater_than_or_equal_to => 0 , :allow_blank => true}
+  validates :away_score, :numericality => { :greater_than_or_equal_to => 0 , :allow_blank => true}
 
   def outcome
     Outcome.outcome(self.home_score, self.away_score)

@@ -7,7 +7,7 @@ class RankingsController < ApplicationController
     @rankings = Prediction.select("user_id, sum(score) as score")
       .group("user_id")
       .order("score DESC")
-      .paginate(page: params[:page])    
+      .paginate(page: params[:page])
   end
 
   # GET /rankings/1

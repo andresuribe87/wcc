@@ -1,6 +1,8 @@
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 
+<h2>User Info</h2>
+<hr class="bs-docs-separator">
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -15,6 +17,7 @@
   <div class="row">
     <div class="span6">
       <h2>Results</h2>
+      <hr class="bs-docs-separator">
 
       <% @group_matches.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
@@ -33,6 +36,7 @@
     </div>
     <div class="span6 predictions">
       <h2>Predictions</h2>
+      <hr class="bs-docs-separator">
 
       <% @group_predictions.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
