@@ -11,6 +11,18 @@
       <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>New user? Make a payment to receive a user account. Use <%= link_to "Venmo", "https://venmo.com/?txn=pay&recipients=andresuribe87%40gmail.com&amount=50&note=Brazil%20Pool&audience=private" %> or <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=andresuribe87@gmail.com" 
+    data-button="buynow" 
+    data-name="Brazil Pool" 
+    data-quantity="1" 
+    data-amount="50" 
+    data-currency="USD" 
+    data-shipping="0" 
+    data-tax="0" 
+    data-callback="https://wcc14.herokuapp.com" 
+    <% if Rails.env.development? %>
+    data-env="sandbox"
+    <% end %>
+></script></p>
   </div>
 </div>

@@ -1,8 +1,10 @@
 <h1>Rules</h1>
 <p>To participate in the betting pool, each player will have to pay a fee in advance. The fee is of <%= number_to_currency Constants::USD_FEE %> and
-will have to be paid prior to registering on the website. Payment can be done through Paypal, Venmo, or Cash. Each fee 
+will have to be paid in order to have a login to the website. Payment can be done through Paypal, Venmo, or Cash. Each fee 
 entitles each player to 1 set of predictions for the world cup (1 prediction per match). However, a 
-person might pay as many fees as he wants, and have additional sets of predictions.
+person might pay as many fees as he wants, and have additional sets of predictions.<br/>
+
+After receiving payment, I will create you account and send you an email. <br />
 
 If you have any questions, you can address them to andresuribe87@gmail.com. For inscriptions and 
 payments, you can call Andres Uribe at +1.646.370.9271.</p>
@@ -17,9 +19,14 @@ Each player will be able to set his predictions up until 30 minutes prior to eac
 For correctly predicting the outcome of the match (win, tie, loss), players will receive <%= Prediction::POINTS_FOR_WIN %> points. 
 </li>
 <li>
-When you correctly guess the outcome, <%= Prediction::POINTS_FOR_GOALS %> bonus points will given for guessing the correct amount of goals a team scored. You get bonus points for each team's score prediction.
+When you correctly guess the outcome, <%= Prediction::POINTS_FOR_GOALS %> bonus point will given for guessing the correct amount of goals a team scored. You get bonus points for each team's score prediction.
 </li>
-<li>For example, if the player predicts a score of the U.S.A. vs Germany match of 2 – 0, and the actual result is 1 – 0, the player will receive <%= Prediction::POINTS_FOR_WIN %> for the outcome (correctly guessing Germany won) and <%= Prediction::POINTS_FOR_GOALS %> for guessing the amount of goals U.S.A. scored. A prediction of 2 - 0 would have been awarded <%= Prediction::POINTS_FOR_WIN + 2 * Prediction::POINTS_FOR_GOALS %>.
+<li>For example, lets imagine a player that predicts the score of the Germany v.s. U.S.A. match. The
+prediction is that it will end up 2 – 0, and the final result is 1 – 0. In this situations, the player 
+will receive <%= Prediction::POINTS_FOR_WIN %> for the outcome (correctly guessing Germany won) and 
+<%= Prediction::POINTS_FOR_GOALS %> for guessing the amount of goals U.S.A. scored (0 goals scored). 
+<br/>
+If the player would have put a prediction of 1 - 0, then a total of <%= Prediction::POINTS_FOR_WIN + 2 * Prediction::POINTS_FOR_GOALS %> points would have been awarded.
 </li>
 <li>
 In the round of 16, the points per outcome increase to <%= Prediction::POINTS_FOR_WIN * 3%> and bonus points increase to <%= Prediction::POINTS_FOR_GOALS * 3 %>

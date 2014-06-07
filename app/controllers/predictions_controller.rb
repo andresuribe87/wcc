@@ -79,8 +79,8 @@ class PredictionsController < ApplicationController
     end
 
     def correct_user
-      respond_to do |format|
-        if !current_user?(@prediction.user)
+      if !current_user?(@prediction.user)
+        respond_to do |format|
           format.html { redirect_to root_url, notice: 'You cannot modify this prediction' }
           format.json { render json: { error: 'You cannot modify this prediction' }, status: :not_authorized }
         end
