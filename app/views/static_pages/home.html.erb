@@ -1,11 +1,48 @@
 <div class="center hero-unit main-hero">
-  <h1>Brazil 2014 World Cup Challenge</h1>
+  <h1 class="offset2">Brazil 2014 World Cup Challenge</h1>
 </div>
-<h3>Welcome to the Brazil 2014 World Cup Challenge!</h3>
-<p> If it's your first time here, you can start by taking 
-a look at the <%= link_to "rules", help_path %>. Otherwise you can simply sign in. 
-</p>
-<%= render 'shared/signin' unless signed_in? %>
-<% if signed_in? %>
-<p>You can also check out your predictions by clicking on Account on the top bar menu and selecting My Predictions from the dropdown. <p/>
-<% end %>
+
+
+<% money_gathered = (User.count() - 1)* Constants::USD_FEE %>
+<div class="row-fluid">  
+  <div class="span8">
+    <h3>Welcome to the Brazil 2014 World Cup Challenge!</h3>
+    <p> If it's your first time here, you can start by taking 
+    a look at the <%= link_to "rules", help_path %>. Otherwise you can simply sign in. 
+    </p>
+    <%= render 'shared/signin' unless signed_in? %>
+    <% if signed_in? %>
+    <p>You can also check out your predictions by clicking on Account on the top bar menu and selecting My Predictions from the dropdown. </p>
+    <% end %>
+  </div>
+  <div class="span4">
+    <h3 class="center">
+      Current Prizes*
+    </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Place</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <tr>
+            <td>1st</td><td><%= number_to_currency 0.5 * money_gathered %></td>
+          </tr>
+          <tr>
+            <td>2nd</td><td><%= number_to_currency 0.3 * money_gathered %></td>
+          </tr>
+          <tr>
+            <td>3rd</td><td><%= number_to_currency 0.1 * money_gathered %></td>
+          </tr>
+          <tr>
+            <td>4th</td><td><%= number_to_currency 0.05 * money_gathered %></td>
+          </tr>
+      </tbody>
+    </table>
+    <p><small>*Based on <%= (User.count() - 1) %> inscriptions (I am not participating, but I'm still putting predictions in)</small></p>
+  </div>
+</div>
+
