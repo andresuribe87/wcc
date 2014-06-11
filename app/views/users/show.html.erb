@@ -21,14 +21,15 @@
       <% @group_matches.keys.sort.each do |group_name| %>
       <h3>Group <%= group_name %></h3>
         <% @group_matches[group_name].sort_by { |m| m.datetime }.each do |match| %>
-        <div class="row-fluid vfill border">          
-          <div class="span3"><%= match.home_team.name %></div>
+        <div class="row-fluid vfill border">
+          <div class="span3 text-center"><%= match.datetime.strftime('%-m/%d %H:%M') %></div>
+          <div class="span2"><%= match.home_team.name %></div>
           <div class="span1"><%= image_tag(match.home_team.country + '.png') %></div>
           <div class="span1 text-right"><%= match.home_score %></div>
-          <div class="span2 text-center"> - </div>
+          <div class="span1 text-center"> - </div>
           <div class="span1 text-left"><%= match.away_score %></div>
           <div class="span1"><%= image_tag(match.away_team.country + '.png') %></div>
-          <div class="span3 text-right"><%= match.away_team.name %></div>
+          <div class="span2 text-right"><%= match.away_team.name %></div>
         </div>
         <% end %>
       <% end %>    

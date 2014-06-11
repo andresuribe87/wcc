@@ -9,6 +9,7 @@ gem 'i18n', '~> 0.6.9'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'validates_timeliness', '~> 3.0'
+gem 'browser-timezone-rails'
 
 # Use sqlite3 as the database for Active Record
 group :development do 
