@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         }
       )
     end
-    
+
     @user.predictions.joins(:match).where("round = ?", 1).each do |prediction|
       if @group_predictions[prediction.match.home_team.group.name].nil?
         @group_predictions[prediction.match.home_team.group.name] = []
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     @round16_predictions = @user.predictions.joins(:match).where("round = ?", 2).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @quarter_predictions = @user.predictions.joins(:match).where("round = ?", 3).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @semi_predictions    = @user.predictions.joins(:match).where("round = ? and matches.id != ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id == ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id = ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @final_predictions   = @user.predictions.joins(:match).where("round = ?", 5).sort! { |a,b| a.match.datetime <=> b.match.datetime }
   end
 
