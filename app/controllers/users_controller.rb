@@ -53,13 +53,13 @@ class UsersController < ApplicationController
     @round16_matches = Match.where("round = ?", 2).order(datetime: :asc)
     @quarter_matches = Match.where("round = ?", 3).order(datetime: :asc)
     @semi_matches = Match.where("round = ? and id != ?", 4, 63).order(datetime: :asc)
-    @third_matches = Match.where("round = ? and id == ?", 4, 63).order(datetime: :asc)
+    @third_matches = Match.where("round = ? and id = ?", 4, 63).order(datetime: :asc)
     @final_matches = Match.where("round = ?", 5).order(datetime: :asc)
 
     @round16_predictions = @user.predictions.joins(:match).where("round = ?", 2).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @quarter_predictions = @user.predictions.joins(:match).where("round = ?", 3).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @semi_predictions    = @user.predictions.joins(:match).where("round = ? and matches.id != ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id == ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id = ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
     @final_predictions   = @user.predictions.joins(:match).where("round = ?", 5).sort! { |a,b| a.match.datetime <=> b.match.datetime }
   end
 
