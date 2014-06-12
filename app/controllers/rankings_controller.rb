@@ -4,9 +4,10 @@ class RankingsController < ApplicationController
   # GET /rankings
   # GET /rankings.json
   def index
-    @rankings = Prediction.select("user_id, sum(score) as score")
-      .group("user_id")
-      .order("score DESC")
+    @rankings = Prediction.select("user_id, name, sum(score) as score")
+      .joins(:user)      
+      .group("user_id, name")
+      .order("score DESC, name ASC")
       .paginate(page: params[:page])
   end
 
