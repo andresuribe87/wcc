@@ -32,7 +32,33 @@
           <div class="span2 text-right"><%= match.away_team.name %></div>
         </div>
         <% end %>
-      <% end %>    
+      <% end %>  
+
+      <h3> Round of 16 </h3>
+      <% @round16_matches.each do |match| %>
+        <%= render 'match', :match => match %>
+      <% end %>
+
+      <h3> Quarter-finals </h3>
+      <% @quarter_matches.each do |match| %>
+        <%= render 'match', :match => match %>
+      <% end %>
+
+      <h3> Semi-finals </h3>
+      <% @semi_matches.each do |match| %>
+        <%= render 'match', :match => match %>
+      <% end %>
+
+      <h3> Play-off for Third Place </h3>
+      <% @third_matches.each do |match| %>
+        <%= render 'match', :match => match %>
+      <% end %>
+
+      <h3>Final</h3>
+      <% @final_matches.each do |match| %>
+        <%= render 'match', :match => match %>
+      <% end %>
+
     </div>
     <div class="span6 predictions">
       <h2>Predictions</h2>
@@ -43,16 +69,42 @@
         <% @group_predictions[group_name].sort_by { |p| p.match.datetime }.each do |prediction| %>
           <%= form_for(prediction, remote: true, format: :json, html: { class: "compact edit_prediction"}) do |f| %>
           <div class="row-fluid border">
-            <div class="span3"><%= prediction.match.home_team.name %></div>
+            <div class="span2"><%= prediction.match.home_team.name %></div>
             <div class="span1"><%= image_tag(prediction.match.home_team.country + '.png') %></div>
             <div class="span2"><%= f.number_field :home_score, min: 0, class: "disabled span12 score text-center", disabled: @viewing_other %></div>
             
             <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score text-center", disabled: @viewing_other %></div>
             <div class="span1"><%= image_tag(prediction.match.away_team.country + '.png') %></div>
-            <div class="span3 text-right"><%= prediction.match.away_team.name %></div>
+            <div class="span2 text-right"><%= prediction.match.away_team.name %></div>
+            <div class="span1 text-right"><strong><%= prediction.score %></strong></div>
           </div>
           <% end %>
         <% end %>
+      <% end %>
+
+      <h3> Round of 16 </h3>
+      <% @round16_predictions.each do |prediction| %>
+        <%= render 'prediction', :prediction => prediction %>
+      <% end %>
+
+      <h3> Quarter-finals </h3>
+      <% @quarter_predictions.each do |prediction| %>
+        <%= render 'prediction', :prediction => prediction %>
+      <% end %>
+
+      <h3> Semi-finals </h3>
+      <% @semi_predictions.each do |prediction| %>
+        <%= render 'prediction', :prediction => prediction %>
+      <% end %>
+
+      <h3> Play-off for Third Place </h3>
+      <% @third_predictions.each do |prediction| %>
+        <%= render 'prediction', :prediction => prediction %>
+      <% end %>
+
+      <h3>Final</h3>
+      <% @final_predictions.each do |prediction| %>
+        <%= render 'prediction', :prediction => prediction %>
       <% end %>
 
     </div>

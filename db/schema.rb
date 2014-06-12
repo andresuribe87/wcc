@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515044232) do
+ActiveRecord::Schema.define(version: 20140612001237) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20140515044232) do
     t.integer  "stadium_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "round",         default: 1
+    t.string   "alt_home_name"
+    t.string   "alt_away_name"
   end
 
   create_table "predictions", force: true do |t|

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @group_predictions = {}
 
     #Create predictions if this user doesn't have them yet
-    matches = Match.all
+    matches = Match.where("round == ?", 1)
     if !@user.predictions.any?      
       Prediction.create(
         matches.map { |m| 
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         }
       )
     end
-    @user.predictions.each do |prediction|
+    @user.predictions.joins(:match).where("round == ?", 1).each do |prediction|
       if @group_predictions[prediction.match.home_team.group.name].nil?
         @group_predictions[prediction.match.home_team.group.name] = []
       end
@@ -49,6 +49,18 @@ class UsersController < ApplicationController
       end
       @group_matches[match.home_team.group.name] << match
     end
+
+    @round16_matches = Match.where("round == ?", 2).order(datetime: :asc)
+    @quarter_matches = Match.where("round == ?", 3).order(datetime: :asc)
+    @semi_matches = Match.where("round == ? and id != ?", 4, 63).order(datetime: :asc)
+    @third_matches = Match.where("round == ? and id == ?", 4, 63).order(datetime: :asc)
+    @final_matches = Match.where("round == ?", 5).order(datetime: :asc)
+
+    @round16_predictions = @user.predictions.joins(:match).where("round == ?", 2).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @quarter_predictions = @user.predictions.joins(:match).where("round == ?", 3).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @semi_predictions    = @user.predictions.joins(:match).where("round == ? and matches.id != ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @third_predictions   = @user.predictions.joins(:match).where("round == ? and matches.id == ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @final_predictions   = @user.predictions.joins(:match).where("round == ?", 5).sort! { |a,b| a.match.datetime <=> b.match.datetime }
   end
 
   # GET /users/new
@@ -122,3 +134,4 @@ class UsersController < ApplicationController
       end
     end
 end
+

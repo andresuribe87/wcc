@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    @matches = Match.order(:datetime).paginate(page: params[:page])
   end
 
   # GET /matches/1
@@ -22,6 +22,10 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+    @teams = [["Select Country", nil]] + Team.select("name, id").order(:name).all.map { |m|
+      [m.name, m.id]
+    }
+    @stadia = Stadium.select("name, id").order(:name).all.map{|s| [s.name, s.id] }
   end
 
   # POST /matches
@@ -45,9 +49,11 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        @match.predictions.each do |prediction|
-          prediction.score = prediction.get_score_for(@match)
-          prediction.save
+        if @match.home_score and @match.away_score          
+          @match.predictions.each do |prediction|
+            prediction.score = prediction.get_score_for(@match)
+            prediction.save
+          end
         end
         format.html { redirect_to @match, flash: { success: 'Match was successfully updated.' } }
         format.json { head :no_content }

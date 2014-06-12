@@ -16,15 +16,16 @@ class Prediction < ActiveRecord::Base
     score = 0
     if self.outcome == match.outcome
       score += POINTS_FOR_WIN
+      #exact goals points only if the outcome was guessed
+      if self.home_score == match.home_score
+        score += POINTS_FOR_GOALS
+      end
+      if self.away_score == match.away_score
+        score += POINTS_FOR_GOALS
+      end
     end
-    #exact goals points
-    if self.home_score == match.home_score
-      score += POINTS_FOR_GOALS
-    end
-    if self.away_score == match.away_score
-      score += POINTS_FOR_GOALS
-    end
-    return score
+    
+    return score * match.round
   end
 
   def changes_cutoff_time

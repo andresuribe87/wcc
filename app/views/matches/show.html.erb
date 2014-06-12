@@ -2,12 +2,12 @@
 
 <p>
   <strong>Home team:</strong>
-  <%= @match.home_team_id %>
+  <%= @match.home_team.nil? ? @match.alt_home_name : @match.home_team.name %>
 </p>
 
 <p>
   <strong>Away team:</strong>
-  <%= @match.away_team_id %>
+  <%= @match.away_team.nil? ? @match.alt_away_name : @match.away_team.name %>
 </p>
 
 <p>

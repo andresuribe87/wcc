@@ -6,6 +6,7 @@ class Match < ActiveRecord::Base
 
   validates :home_score, :numericality => { :greater_than_or_equal_to => 0 , :allow_blank => true}
   validates :away_score, :numericality => { :greater_than_or_equal_to => 0 , :allow_blank => true}
+  validate :round, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5}
 
   def outcome
     Outcome.outcome(self.home_score, self.away_score)

@@ -6,8 +6,7 @@
 #   console.log id
 #   id
 #  $.post '/predictions/id.json'
-
-$(document).ready ->
+ready = ->
   $(".edit_prediction").on("ajax:success", (e, data, status, xhr) ->
     #remove saving icon
     $('#note').hide()
@@ -22,3 +21,6 @@ $(document).ready ->
     $('#note').show()
     $(this).parent().parent().parent().submit()
   $(".tooltip-container").tooltip()
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

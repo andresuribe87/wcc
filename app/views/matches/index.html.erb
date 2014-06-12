@@ -8,8 +8,8 @@
       <th>Home score</th>
       <th>Away score</th>
       <th>Datetime</th>
+      <th>Round</th>
       <th>Stadium</th>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -18,20 +18,18 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.home_team.country %></td>
-        <td><%= match.away_team.country %></td>
+        <td><%= match.home_team.nil? ? match.alt_home_name : match.home_team.name %></td>
+        <td><%= match.away_team.nil? ? match.alt_away_name : match.away_team.name %></td>
         <td><%= match.home_score %></td>
         <td><%= match.away_score %></td>
-        <td><%= match.datetime %></td>
-        <td><%= match.stadium.name %></td>
+        <td><%= match.datetime.strftime('%m/%d %H:%M') %></td>
+        <td><%= match.round %></td>
+        <td><%= match.stadium.name unless match.stadium.nil? %></td>
         <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>        
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Match', new_match_path %>
+<%= will_paginate @matches %>

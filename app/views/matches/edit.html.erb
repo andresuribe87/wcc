@@ -1,6 +1,19 @@
 <h1>Editing match</h1>
+<% if @match.alt_home_name and @match.alt_away_name %>
+<h3>Match #<%= @match.id %>: <%= @match.alt_home_name %>(<%= @match.home_team.nil? ? 'TBD' : @match.home_team.name %>) vs. <%= @match.alt_away_name %>(<%= @match.away_team.nil? ? 'TBD' : @match.away_team.name %>) - <%= @match.datetime.strftime '%-m/%d %H:%M'%></h3>
+<% end %>
 
-<%= render 'form' %>
+<%= form_for @match do |f| %>
+  <%= f.label(:home_team_id) %>
+  <%= f.select(:home_team_id, @teams) %>
+  <%= f.label(:away_team_id) %>
+  <%= f.select(:away_team_id, @teams) %>
+  <%= f.label(:home_score) %>
+  <%= f.number_field(:home_score) %>
+  <%= f.label(:away_score) %>
+  <%= f.number_field(:away_score) %>
+  <%= f.submit "Update" %>
+<% end %>
 
 <%= link_to 'Show', @match %> |
 <%= link_to 'Back', matches_path %>
