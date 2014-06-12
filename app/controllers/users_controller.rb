@@ -36,15 +36,7 @@ class UsersController < ApplicationController
       )
     end
     # Create predictions for second stage!!
-    predictions = @user.predictions.joins(:match).where("round != ?", 1)    
-    if predictions.empty?
-      matches = Match.where("round != ?", 1)
-      Prediction.create(
-        matches.map { |m| 
-          { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id, updated_at: DateTime.now }
-        }
-      )
-    end
+    self.create_second_stage_predictions
 
     @user.predictions.joins(:match).where("round = ?", 1).each do |prediction|
       if @group_predictions[prediction.match.home_team.group.name].nil?
@@ -74,6 +66,17 @@ class UsersController < ApplicationController
     @final_predictions   = @user.predictions.joins(:match).where("round = ?", 5).sort! { |a,b| a.match.datetime <=> b.match.datetime }
   end
 
+  def create_second_stage_predictions
+    predictions = @user.predictions.joins(:match).where("round != ?", 1)    
+    if predictions.empty?
+      matches = Match.where("round != ?", 1)
+      Prediction.create(
+        matches.map { |m| 
+          { match_id: m.id, home_score: 0, away_score: 0, user_id: @user.id, updated_at: DateTime.now }
+        }
+      )
+    end
+  end
   # GET /users/new
   def new
     @user = User.new
