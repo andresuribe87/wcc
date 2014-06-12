@@ -42,8 +42,12 @@ class PredictionsController < ApplicationController
   # PATCH/PUT /predictions/1
   # PATCH/PUT /predictions/1.json
   def update
+    
     respond_to do |format|
-      if @prediction.update(prediction_params)
+      if @prediction.match.datetime - Prediction::CUTOFF_MINUTES.minutes < DateTime::now
+        format.html { render action: 'edit' }
+        format.json { render json: { error: 'You cannot modify a prediction after the cutoff time' }, status: :unprocessable_entity }
+      elsif @prediction.update(prediction_params)
         format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
         format.json { head :no_content }
       else
