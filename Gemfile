@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.2.10'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'sprockets', '~> 2.11.0'
 gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'i18n', '~> 0.6.9'
+gem 'i18n', '~> 0.7'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'validates_timeliness', '~> 3.0'

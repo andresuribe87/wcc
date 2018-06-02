@@ -15,4 +15,4 @@
 //= require browser_timezone_rails/application.js
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
+//= require users
