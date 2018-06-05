@@ -1,10 +1,10 @@
 <div class="row-fluid vfill border">
   <div class="span3 text-center"><%= match.datetime.strftime('%-m/%d %H:%M') %></div>
   <div class="span2"><%= match.home_team.nil? ? match.alt_home_name : match.home_team.name %></div>
-  <div class="span1"><%= image_tag(match.home_team.country + '.png') unless match.home_team.nil? %></div>
+  <div class="span1"><%= image_tag("https://fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + match.home_team.country) unless match.home_team.nil? %></div>
   <div class="span1 text-right"><%= match.home_score %></div>
   <div class="span1 text-center"> - </div>
   <div class="span1 text-left"><%= match.away_score %></div>
-  <div class="span1"><%= image_tag(match.away_team.country + '.png') unless match.away_team.nil? %></div>
+  <div class="span1"><%= image_tag("https://fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + match.away_team.country) unless match.away_team.nil? %></div>
   <div class="span2 text-right"><%= match.away_team.nil? ? match.alt_away_name : match.away_team.name %></div>
 </div>

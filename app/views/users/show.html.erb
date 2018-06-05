@@ -24,11 +24,11 @@
         <div class="row-fluid vfill border">
           <div class="span3 text-center"><%= match.datetime.strftime('%-m/%d %H:%M') %></div>
           <div class="span2"><%= match.home_team.name %></div>
-          <div class="span1"><%= image_tag(match.home_team.country + '.png') %></div>
+          <div class="span1"><%= image_tag("//fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + match.home_team.country.downcase) unless match.home_team.country.nil? %></div>
           <div class="span1 text-right"><%= match.home_score %></div>
           <div class="span1 text-center"> - </div>
           <div class="span1 text-left"><%= match.away_score %></div>
-          <div class="span1"><%= image_tag(match.away_team.country + '.png') %></div>
+          <div class="span1"><%= image_tag("//fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + match.away_team.country.downcase) unless match.away_team.country.nil? %></div>
           <div class="span2 text-right"><%= match.away_team.name %></div>
         </div>
         <% end %>
@@ -70,11 +70,11 @@
           <%= form_for(prediction, remote: true, format: :json, html: { class: "compact edit_prediction"}) do |f| %>
           <div class="row-fluid border">
             <div class="span2"><%= prediction.match.home_team.name %></div>
-            <div class="span1"><%= image_tag(prediction.match.home_team.country + '.png') %></div>
+            <div class="span1"><%= image_tag("//fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + prediction.match.home_team.country.downcase) unless prediction.match.home_team.country.nil? %></div>
             <div class="span2"><%= f.number_field :home_score, min: 0, class: "disabled span12 score text-center", disabled: @viewing_other %></div>
             
             <div class="span2"><%= f.number_field :away_score, min: 0, class: "span12 score text-center", disabled: @viewing_other %></div>
-            <div class="span1"><%= image_tag(prediction.match.away_team.country + '.png') %></div>
+            <div class="span1"><%= image_tag("//fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + prediction.match.away_team.country.downcase) unless prediction.match.away_team.country.nil? %></div>
             <div class="span2 text-right"><%= prediction.match.away_team.name %></div>
             <div class="span1 text-right"><strong><%= prediction.score %></strong></div>
           </div>

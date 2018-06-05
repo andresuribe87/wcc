@@ -59,11 +59,11 @@ class UsersController < ApplicationController
     @third_matches = Match.where("round = ? and id = ?", 4, 63).order(datetime: :asc)
     @final_matches = Match.where("round = ?", 5).order(datetime: :asc)
 
-    @round16_predictions = @user.predictions.joins(:match).where("round = ?", 2).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @quarter_predictions = @user.predictions.joins(:match).where("round = ?", 3).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @semi_predictions    = @user.predictions.joins(:match).where("round = ? and matches.id != ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id = ?", 4, 63).sort! { |a,b| a.match.datetime <=> b.match.datetime }
-    @final_predictions   = @user.predictions.joins(:match).where("round = ?", 5).sort! { |a,b| a.match.datetime <=> b.match.datetime }
+    @round16_predictions = @user.predictions.joins(:match).where("round = ?", 2).order!('matches.datetime ASC')
+    @quarter_predictions = @user.predictions.joins(:match).where("round = ?", 3) .order!('matches.datetime ASC')
+    @semi_predictions    = @user.predictions.joins(:match).where("round = ? and matches.id != ?", 4, 63) .order!('matches.datetime ASC')
+    @third_predictions   = @user.predictions.joins(:match).where("round = ? and matches.id = ?", 4, 63) .order!('matches.datetime ASC')
+    @final_predictions   = @user.predictions.joins(:match).where("round = ?", 5) .order!('matches.datetime ASC')
   end
 
   def create_second_stage_predictions
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.is_admin?
+      redirect_to(root_url) unless !current_user.nil? and current_user.is_admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
