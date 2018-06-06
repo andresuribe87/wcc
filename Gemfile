@@ -44,9 +44,9 @@ end
 
 group :production do
   gem 'pg', '0.20.0'
+  gem 'rails_serve_static_assets'
+  gem 'rails_12factor'
 end
-
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
