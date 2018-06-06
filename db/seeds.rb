@@ -54,12 +54,11 @@ Team.create([
 
 #Insert Userhome_score
 User.create([
-                {id: 1, name: 'Andres Uribe', email: 'test@test.com', password: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
-                 password_confirmation: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', is_admin: true},
+                {id: 1, name: 'Andres Uribe', email: 'test@test.com', password: 'foobar',
+                 password_confirmation: 'foobar', is_admin: true},
                 {id: 2, name: 'Buzz Lightyear', email: 'b@l.com', password: 'buzzed',
                  password_confirmation: 'buzzed', is_admin: false}
             ])
-User.new({:email => "test2@test.com", :name => "Testy Tester", :password => "foobar", :password_confirmation => "foobar"}).save
 
 City.create([
                 {name: 'Moscow', id: 1},
