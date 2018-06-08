@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612001237) do
+ActiveRecord::Schema.define(version: 20180608124410) do
 
-  create_table "cities", force: true do |t|
+  create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "matches", force: true do |t|
+  create_table "matches", force: :cascade do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.integer  "home_score"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140612001237) do
     t.string   "alt_away_name"
   end
 
-  create_table "predictions", force: true do |t|
+  create_table "predictions", force: :cascade do |t|
     t.integer  "match_id"
     t.integer  "home_score"
     t.integer  "away_score"
@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(version: 20140612001237) do
     t.integer  "score"
   end
 
-  create_table "stadia", force: true do |t|
+  create_table "stadia", force: :cascade do |t|
     t.string   "name"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "country"
     t.integer  "group_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140612001237) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"

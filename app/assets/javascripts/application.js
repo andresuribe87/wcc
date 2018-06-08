@@ -15,3 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require users
+//= require moment
+//= require moment-timezone-with-data

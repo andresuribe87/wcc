@@ -21,6 +21,9 @@ ready = ->
     $('#note').finish().show()
     $(this).parent().parent().parent().submit()
   $(".tooltip-container").tooltip()
+  $(".localtime").each(() ->
+    $(this).html(moment($(this).data('utcdate')).tz(moment.tz.guess()).format('lll'))
+  )
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

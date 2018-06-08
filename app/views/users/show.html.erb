@@ -22,7 +22,7 @@
       <h3>Group <%= group_name %></h3>
         <% @group_matches[group_name].sort_by { |m| m.datetime }.each do |match| %>
         <div class="row-fluid vfill border">
-          <div class="span3 text-center"><%= match.datetime.strftime('%-m/%d %H:%M') %></div>
+          <div class="span3 text-center localtime" data-utcdate="<%= match.datetime.to_formatted_s(:iso8601) %>"><%= match.datetime.strftime('%-m/%d %H:%M') %></div>
           <div class="span2"><%= match.home_team.name %></div>
           <div class="span1"><%= image_tag("//fsprdcdnpublic.azureedge.net/global-pictures/flags-fwc2018-4/" + match.home_team.country.downcase) unless match.home_team.country.nil? %></div>
           <div class="span1 text-right"><%= match.home_score %></div>
