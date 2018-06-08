@@ -2,7 +2,7 @@
 <p>
 <strong>Email</strong>: <%= @user.email %>
 </p>
-<%= render 'form' %>
+<%= @current_user.is_admin ? (render 'admin_form') : (render 'form') %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
