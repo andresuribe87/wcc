@@ -91,6 +91,7 @@ class UsersController < ApplicationController
   def create
     
     @user = User.new(user_params)
+    @user.created_by = current_user.name
 
     respond_to do |format|
       if @user.save
